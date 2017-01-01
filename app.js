@@ -18,54 +18,14 @@ app.use(bodyParser.json({type:'application/vnd.api+json'})); // parse applicatio
 app.use(methodOverride());
 app.use(express.static(__dirname + '/public'));
 
-//model
-
-var Button = mongoose.model('Button',{
-	text:String,
-	points: Number
-});
-
-var Reward = mongoose.model('Reward',{
-	text:String,
-	cost: Number
-});
-
 
 //ROUTES
 
-// Task routes
+var buttons = require('/routes/buttons_routes.js');
+app.use('/buttons', buttons);
 
-//get all task buttons
-app.get("/api/buttons",function(req,res){
-	// use mongoose to get all buttons in the database
-});
-
-//create a new button and send it back to button list after creation
-app.post('/api/buttons',function(req,res){
-	// create a button, information comes from AJAX request from Angular
-});
-
-//delete a button
-app.delete('/api/buttons/:button_id',function(req,res){
-	Button.remove({});
-});
-
-// Reward routes
-
-//get all rewards
-app.get("/api/rewards",function(req,res){
-	// use mongoose to get all buttons in the database
-});
-
-//create a new reqard and send it back to reward list after creation
-app.post('/api/rewards',function(req,res){
-	// create a reward, information comes from AJAX request from Angular
-});
-
-//delete a reward
-app.delete('/api/rewards/:rewards_id',function(req,res){
-	Reward.remove({});
-});
+var rewards = require('/routes/rewards_routes.js');
+app.use('/rewards', rewards);
 
 
 // APPLICATION **Important to define this after the API routes that are above (otherwise weird errors)**
