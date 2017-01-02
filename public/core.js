@@ -16,13 +16,13 @@ function mainController($scope, $http){
 	})
 	.error(function(data){
 		//TO DO
-	})
+	});
 
 	$scope.createButton = function(){
 		$http.post('/api/buttons', $scope.formDataTasks)
 		.success(function(data){
 			//TO DO
-		});
+		})
 		.error(function(data){
 			//TO DO
 		});
