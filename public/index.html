@@ -16,18 +16,18 @@
 <body ng-controller="mainController">
     <div class="tasks">
         <h1>Tasks</h1>
-        <!-->TASK LIST</!-->
+        <!--TASK LIST-->
         <div class="task-list">
-            <!-->LOOP OVER THE TASKS IN $scope.tasks</!-->
+            <!--LOOP OVER THE TASKS IN $scope.tasks-->
             <div class="checkbox" ng-repeat="task in tasks">
                 <label>
-                    <input type="checkbox" ng-click="deleteButton(task._id)"> {{task.text}} is worth {{task.points}}
+                    <input type="checkbox" ng-click="deleteButton(task._id)">{{task.text}} is worth {{task.points}}
                 </label>
             </div>
         </div>
     </div>
     
-    <!-->FORM TO CREATE NEW TASK BUTTONS</!-->
+    <!--FORM TO CREATE NEW TASK BUTTONS -->
     <div id="task-button-form">
         <form>
             <div class="form-group">
@@ -42,9 +42,9 @@
 
     <div class="rewards">
         <h1>Rewards</h1>
-        <!-->Rewards LIST</!-->
+        <!--Rewards LIST-->
         <div class="rewards-list">
-            <!-->LOOP OVER THE rewards IN $scope.rewards</!-->
+            <!--LOOP OVER THE rewards IN $scope.rewards-->
             <div class="checkbox" ng-repeat="reward in rewards">
                 <label>
                     <input type="checkbox" ng-click="deleteReward(rewards._id)"> {{rewards.text}} is worth {{rewards.points}}
@@ -53,7 +53,7 @@
         </div>
     </div>
     
-    <!-->FORM TO CREATE NEW rewards</!-->
+    <!--FORM TO CREATE NEW rewards-->
     <div id="rewards-button-form">
         <form>
             <div class="form-group">

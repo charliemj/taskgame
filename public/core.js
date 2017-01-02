@@ -71,4 +71,4 @@ function mainController($scope, $http){
 		});
 	};
 
-};
+}
