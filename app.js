@@ -27,6 +27,8 @@ app.use('/tasks', tasks);
 var rewards = require('./routes/rewards_routes.js');
 app.use('/rewards', rewards);
 
+var points = require("./routes/points_routes.js");
+app.use("/points",points);
 
 // APPLICATION **Important to define this after the API routes that are above (otherwise weird errors)**
 

@@ -34,7 +34,8 @@ pointsSchema.statics.addPoints = function(taskId,pointsId,callback){
         }//end if
         else{
             Points.findOneAndUpdate({_id: pointsId}, 
-            { $inc: { points: task.points }}, callback);//end FOAU
+            //include {new:true} to return updated doc
+            { $inc: { points: task.points }}, {new:true}, callback);//end FOAU
         }//end else
     });//end findOne
 };//end addPoints
@@ -46,7 +47,8 @@ pointsSchema.statics.subtractPoints = function(rewardId, pointsId, callback){
         }//end if
         else{
             Points.findOneAndUpdate({_id: pointsId}, 
-            { $inc: { points: -reward.cost }}, callback);//end FOAU
+            //include {new:true} to return updated doc
+            { $inc: { points: -reward.cost }},{new:true}, callback);//end FOAU
         }//end else
     });//end findOne
 };//end subtractPoints

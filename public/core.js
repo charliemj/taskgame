@@ -7,6 +7,17 @@ var taskGame = angular.module("taskGame",[]);
 function mainController($scope, $http){
 	$scope.formDataTasks = {};
 	$scope.formDataRewards = {};
+	$scope.points = {};
+	
+	//display points
+	$http.get("/points")
+	.success(function(data){
+		$scope.points = data;
+		console.log(data);
+	})
+	.error(function(data){
+		console.log("Error: " + data);
+	});
 
 
 	// TASK BUTTONS

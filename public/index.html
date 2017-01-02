@@ -48,7 +48,7 @@
             <!--LOOP OVER THE rewards IN $scope.rewards-->
             <div class="checkbox" ng-repeat="reward in rewards">
                 <label>
-                    <input type="checkbox" ng-click="deleteReward(rewards._id)"> {{rewards.text}} costs {{rewards.cost}}
+                    <input type="checkbox" ng-click="deleteReward(reward._id)"> {{reward.text}} costs {{reward.cost}}
                 </label>
             </div>
         </div>

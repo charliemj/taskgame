@@ -3,6 +3,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose');
 var Reward = require('../models/rewards_model.js');
+var Points = require("../models/point_total_model.js");
+
 
 //get all rewards
 router.get("/",function(req,res){
@@ -44,7 +46,7 @@ router.post('/',function(req,res){
 //delete a task
 router.delete('/:reward_id',function(req,res){
     //update the point total
-    Task.findOne({_id : req.params.reward_id},function(err,reward){
+    Reward.findOne({_id : req.params.reward_id},function(err,reward){
         if (err){
             res.send(err);
         }//end if
