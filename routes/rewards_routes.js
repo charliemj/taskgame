@@ -76,8 +76,6 @@ router.delete('/:reward_id',function(req,res){
             });//end getPoints
         }//end else
     });//end findOne
-
-
 });
 
 module.exports = router;

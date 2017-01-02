@@ -74,9 +74,7 @@ router.delete('/:task_id',function(req,res){
                 });//end addPoints
             });//end getPoints
         }//end else
-    });//end findOne
-
-    
+    });//end findOne 
 });
 
 module.exports = router;
