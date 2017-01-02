@@ -1,73 +1,80 @@
 var taskGame = angular.module("taskGame",[]);
 
-//On page load, we will GET /api/buttons and bind the JSON we receive from the API to $scope.buttons. 
-//We will then loop over these in our view to make our task buttons.
+//On page load, we will GET /tasks and /rewards and bind the JSON we receive from the API to $scope.tasks and $scope.rewards. 
+//We will then loop over these in our view to make our task buttons and rewards.
 // Similar for post and delete
 
 function mainController($scope, $http){
 	$scope.formDataTasks = {};
 	$scope.formDataRewards = {};
 
+
 	// TASK BUTTONS
 	//when landing on the page, get all buttons and show them
-	$http.get('/api/buttons')
+	$http.get('/tasks')
 	.success(function(data){
-		//TODO
+		$scope.tasks = data;
 	})
 	.error(function(data){
-		//TO DO
+		console.log("Error: " + data);
 	});
 
-	$scope.createButton = function(){
-		$http.post('/api/buttons', $scope.formDataTasks)
+	// when landing on the page, get all tasks and show them
+
+	$scope.createTask = function(){
+		$http.post('/tasks', $scope.formDataTasks)
 		.success(function(data){
-			//TO DO
+			$scope.formDataTasks = {}; //clear form so our user can enter another
+			$scope.tasks = data;
 		})
 		.error(function(data){
-			//TO DO
+			console.log("Error: " + data);
 		});
 	};
 
-	//delete a button
-	$scope.deleteButton = function(id){
-		$scope.delete('/api/buttons' + id)
+	//delete a task
+	$scope.deleteTask = function(id){
+		$http.delete('/tasks/' + id)
 		.success(function(data){
-			//TO DO
+			$scope.tasks = data[0];
+			$scope.points = data[1];
 		})
 		.error(function(data){
-			//TO DO
+			console.log('Error: ' + data);
 		});
 	};
 
 
 	//REWARDS
 	//when landing on the page, get all rewards and show them
-	$http.get('/api/rewards')
+	$http.get('/rewards')
 	.success(function(data){
-		//TODO
+		$scope.rewards = data;
 	})
 	.error(function(data){
-		//TO DO
+		console.log("Error: " + data);
 	});
 
 	$scope.createReward = function(){
-		$http.post('/api/rewards', $scope.formDataRewards)
+		$http.post('/rewards', $scope.formDataRewards)
 		.success(function(data){
-			//TO DO
+			$scope.formDataRewards = {}; //clear form so our user can enter another
+			$scope.rewards = data;
 		})
 		.error(function(data){
-			//TO DO
+			console.log("Error: " + data);
 		});
 	};
 
 	//delete a reward
 	$scope.deleteReward = function(id){
-		$scope.delete('/api/rewards' + id)
+		$http.delete('/rewards/' + id)
 		.success(function(data){
-			//TO DO
+			$scope.rewards = data[0];
+			$scope.points = data[1];
 		})
 		.error(function(data){
-			//TO DO
+			console.log("Error: " + data);
 		});
 	};
 

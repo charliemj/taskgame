@@ -14,6 +14,7 @@
 </head>
 
 <body ng-controller="mainController">
+    <div>You have {{points.points}} points</div>
     <div class="tasks">
         <h1>Tasks</h1>
         <!--TASK LIST-->
@@ -21,7 +22,7 @@
             <!--LOOP OVER THE TASKS IN $scope.tasks-->
             <div class="checkbox" ng-repeat="task in tasks">
                 <label>
-                    <input type="checkbox" ng-click="deleteButton(task._id)">{{task.text}} is worth {{task.points}}
+                    <input type="checkbox" ng-click="deleteTask(task._id)">{{task.text}} is worth {{task.points}}
                 </label>
             </div>
         </div>
@@ -35,8 +36,8 @@
                 <input type="text" class="form-control input-lg text-center" placeholder="Task" ng-model="formDataTasks.text">
                 <input type="text" class="form-control input-lg text-center" placeholder="Points for task" ng-model="formDataTasks.points"> <!--change to radio buttons 1-5 -->
             </div>
-            <!-- createButton() WILL CREATE NEW Task Button -->
-            <button type="submit" ng-click="createButton()">Add Task Button</button>
+            <!-- createTask() WILL CREATE NEW Task Button -->
+            <button type="submit" ng-click="createTask()">Add Task Button</button>
         </form>
     </div>
 
@@ -62,7 +63,7 @@
                 <input type="text" class="form-control input-lg text-center" placeholder="Cost" ng-model="formDataRewards.cost"> 
             </div>
             <!-- createButton() WILL CREATE NEW Task Button -->
-            <button type="submit" ng-click="createRewards()">Add Reward</button>
+            <button type="submit" ng-click="createReward()">Add Reward</button>
         </form>
     </div>
 

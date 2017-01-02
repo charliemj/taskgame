@@ -21,10 +21,10 @@ app.use(express.static(__dirname + '/public'));
 
 //ROUTES
 
-var buttons = require('/routes/buttons_routes.js');
-app.use('/buttons', buttons);
+var tasks = require('./routes/task_routes.js');
+app.use('/tasks', tasks);
 
-var rewards = require('/routes/rewards_routes.js');
+var rewards = require('./routes/rewards_routes.js');
 app.use('/rewards', rewards);
 
 

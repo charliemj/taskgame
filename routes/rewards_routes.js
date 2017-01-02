@@ -7,19 +7,14 @@ var Reward = require('../models/rewards_model.js');
 //get all rewards
 router.get("/",function(req,res){
     // use mongoose to get all rewards in the database
-    if(err){
-        res.send(err);
-    }//end if
-    else{
-        Reward.find(function(err,rewards){
-            if (err){
-                res.send(err);
-            }//end if
-            else{
-                res.json([rewards]);
-            }//end else
-        });//end find
-    }//end else
+    Reward.find(function(err,rewards){
+        if (err){
+            res.send(err);
+        }//end if
+        else{
+            res.json(rewards);
+        }//end else
+    });//end find
 });
 
 //create a new reward and send it back to task list after creation
@@ -39,7 +34,7 @@ router.post('/',function(req,res){
                     res.send(err);
                 }//end if
                 else{
-                    res.json([rewards]);
+                    res.json(rewards);
                 }//end else
             });//end find
         }//end else
@@ -48,24 +43,39 @@ router.post('/',function(req,res){
 
 //delete a task
 router.delete('/:reward_id',function(req,res){
-    Reward.remove({
-        _id : req.params.reward_id
-    }, function(err, reward){
+    //update the point total
+    Task.findOne({_id : req.params.reward_id},function(err,reward){
         if (err){
             res.send(err);
         }//end if
         else{
-            // get and return all the rewards after you delete one
-            Reward.find(function(err, rewards){
-                if(err){
-                    res.send(err);
-                }//end if
-                else{
-                    res.json([rewards]);
-                }//end else
-            });//end find 
+            Points.getPoints(function(err,points){
+                Points.subtractPoints(reward._id, points._id,function(err,points){
+                    //delete the reward
+                    Reward.remove({
+                        _id : req.params.reward_id
+                    }, function(err, reward){
+                        if (err){
+                            res.send(err);
+                        }//end if
+                        else{
+                            // get and return all the rewards after you delete one
+                            Reward.find(function(err, rewards){
+                                if(err){
+                                    res.send(err);
+                                }//end if
+                                else{
+                                    res.json([rewards,points]);
+                                }//end else
+                            });//end find 
+                        }//end else
+                    });//end remove
+                });//end subtractPoints
+            });//end getPoints
         }//end else
-    });//end remove
+    });//end findOne
+
+
 });
 
 module.exports = router;
